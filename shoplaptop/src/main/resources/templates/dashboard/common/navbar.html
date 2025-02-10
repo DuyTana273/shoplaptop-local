@@ -1,0 +1,35 @@
+<div th:fragment="navbar" xmlns:sec="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <a class="navbar-brand d-flex align-items-center gap-2" th:href="@{/home}">
+                <img th:src="@{/css/img/logo.png}" alt="logo" width="50" height="50" class="nav_logo rounded-circle">
+                <span class="nav_logo-name">Nấm Linh Chi</span>
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <!-- Hiển thị nếu người dùng đã đăng nhập -->
+                    <li sec:authorize="isAuthenticated()" class="nav-item">
+                        <span class="nav-link text-white">Welcome, <span sec:authentication="name"></span>!</span>
+                    </li>
+                    <li sec:authorize="isAuthenticated()" class="nav-item">
+                        <a class="nav-link" href="/logout">Logout <i class="fas fa-sign-out-alt ms-1"></i></a>
+                    </li>
+
+                    <!-- Hiển thị nếu người dùng chưa đăng nhập -->
+                    <li sec:authorize="isAnonymous()" class="nav-item">
+                        <a class="nav-link" href="/login">Login</a>
+                    </li>
+                    <li sec:authorize="isAnonymous()" class="nav-item">
+                        <a class="nav-link" href="/register">Register</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
